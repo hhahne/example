@@ -8,6 +8,13 @@ public class InsuranceResponse {
     //Add a List of error message
     //private String errorMessage;
 
+    public InsuranceResponse(String customerNumber, String policyNumber, String status) {
+        this.customerNumber = customerNumber;
+        this.policyNumber = policyNumber;
+        this.status = status;
+    }
+
+
     //Add Annotations
 
     public String getCustomerNumber() {
