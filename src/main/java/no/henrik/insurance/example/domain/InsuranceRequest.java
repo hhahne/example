@@ -12,15 +12,17 @@ public class InsuranceRequest {
     private String firstName;
     private String lastName;
     private String fnr;
+    private String email;
     private boolean consentGiven;
     private String policyName;
 
     //Would probably need to add other things as well, Dates, payment information and so on.
-    public InsuranceRequest(String firstName, String lastName, String fnr, boolean consentGiven, String policyName) {
+    public InsuranceRequest(String firstName, String lastName, String fnr, boolean consentGiven, String policyName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.fnr = fnr;
         this.consentGiven = consentGiven;
         this.policyName = policyName;
+        this.email = email;
     }
 }

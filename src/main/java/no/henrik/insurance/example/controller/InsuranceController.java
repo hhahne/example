@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+//TODO: Add a logger and some nice logging, especially for exception cases but also general tracing.
+
 @RestController
 public class InsuranceController {
 

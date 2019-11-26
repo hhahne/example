@@ -85,7 +85,7 @@ public class InsuranceControllerUnitTest {
     }
 
     private InsuranceRequest createDefaultInsuranceRequest() {
-        InsuranceRequest request = new InsuranceRequest("Henrik", "Hahne", "12345678910", true, "Livsforsikring");
+        InsuranceRequest request = new InsuranceRequest("Henrik", "Hahne", "12345678910", true, "Livsforsikring", "henrik@zuperzoft.com");
         return request;
     }
 
