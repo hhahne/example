@@ -7,6 +7,7 @@ import no.henrik.insurance.example.domain.InsuranceRequest;
 import no.henrik.insurance.example.domain.InsuranceResponse;
 import no.henrik.insurance.example.domain.POLICY_STATUS;
 import no.henrik.insurance.example.exception.CustomerCreationException;
+import no.henrik.insurance.example.exceptionhandler.PolicyExceptionHandler;
 import no.henrik.insurance.example.service.InsuranceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,11 +35,13 @@ public class InsuranceControllerUnitTest {
     private InsuranceService service;
     @InjectMocks
     private InsuranceController controller;
+    @InjectMocks
+    private PolicyExceptionHandler exceptionHandler;
 
     @BeforeEach
     public void initialiseRestAssuredMockMvcStandalone() {
         MockitoAnnotations.initMocks(this);
-        RestAssuredMockMvc.standaloneSetup(controller);
+        RestAssuredMockMvc.standaloneSetup(controller, exceptionHandler);
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8080;
     }
