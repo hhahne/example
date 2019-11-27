@@ -19,6 +19,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.HashMap;
+
 import static io.restassured.RestAssured.with;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.Matchers.is;
@@ -79,6 +81,18 @@ public class InsuranceControllerUnitTest {
     }
 
     @Test
+    public void shouldTestExceptionWithWrongInput() {
+        InsuranceRequest request= createDefaultInsuranceRequest();
+        ValidatableResponse returnObject = with()
+                .body(createWrongInputRequest())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .when()
+                .request("POST", "/new")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
     public void testSimpleSayHelloController() {
         Object result = given().when().request("GET", "/hello").then().statusCode(200);
         assertNotNull(result);
@@ -89,7 +103,13 @@ public class InsuranceControllerUnitTest {
         return request;
     }
 
-    private InsuranceResponse createDefaultInsuranceResponse() {
-        return new InsuranceResponse("1", "A-1", POLICY_STATUS.DONE.toString());
+    private InsuranceRequest createWrongInputRequest() {
+        InsuranceRequest request = new InsuranceRequest(null, "Hahne", "12345678910", true, "Livsforsikring", "henrik@zuperzoft.com");
+        return request;
     }
+
+    private InsuranceResponse createDefaultInsuranceResponse() {
+        return new InsuranceResponse("1", "A-1", POLICY_STATUS.DONE.toString(), new HashMap<String, String>());
+    }
+
 }

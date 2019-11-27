@@ -7,9 +7,8 @@ import no.henrik.insurance.example.external.Brevtjeneste;
 import no.henrik.insurance.example.external.FagSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * This class is the service layer class that should handle all calls to the external systems
- */
+import java.util.HashMap;
+
 public class InsuranceService {
 
     @Autowired
@@ -19,6 +18,6 @@ public class InsuranceService {
     private Brevtjeneste brevTjeneste;
 
     public InsuranceResponse createPolicy(InsuranceRequest request) {
-        return new InsuranceResponse("1", "A-1", POLICY_STATUS.DONE.toString());
+        return new InsuranceResponse("1", "A-1", POLICY_STATUS.DONE.toString(), new HashMap<String, String>());
     }
 }

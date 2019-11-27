@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 //TODO: Add a logger and some nice logging, especially for exception cases but also general tracing.
@@ -27,7 +29,7 @@ public class InsuranceController {
     }
 
     @PostMapping(value = "/new", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<InsuranceResponse> postInsuranceClaim(@RequestBody InsuranceRequest request) {
+    public ResponseEntity<InsuranceResponse> postInsuranceClaim(@RequestBody @Valid InsuranceRequest request) {
             InsuranceResponse response = service.createPolicy(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -6,16 +6,23 @@ import no.henrik.insurance.example.domain.POLICY_STATUS;
 import no.henrik.insurance.example.exception.CustomerCreationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ControllerAdvice(assignableTypes = InsuranceController.class)
 public class PolicyExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CustomerCreationException.class)
     public ResponseEntity<InsuranceResponse> handleCustomerCreatedException(CustomerCreationException cce) {
-        InsuranceResponse response = new InsuranceResponse(null, null, POLICY_STATUS.INITIAL_CREATE.toString());
+        InsuranceResponse response = new InsuranceResponse(null, null, POLICY_STATUS.INITIAL_CREATE.toString(), new HashMap<String, String>());
         return new ResponseEntity<InsuranceResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }
