@@ -1,6 +1,6 @@
 package no.henrik.insurance.example.external;
 
-import no.henrik.insurance.example.domain.POLICY_STATUS;
+import no.henrik.insurance.example.domain.PolicyStatus;
 
 public class FagSystemImpl implements FagSystem {
     @Override
@@ -15,6 +15,6 @@ public class FagSystemImpl implements FagSystem {
 
     @Override
     public String updatePolicyStatus(String policyNumber, String status) {
-        return POLICY_STATUS.LETTER_SENT.toString();
+        return PolicyStatus.LETTER_SENT.toString();
     }
 }

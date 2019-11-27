@@ -5,7 +5,7 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.response.ValidatableResponse;
 import no.henrik.insurance.example.domain.InsuranceRequest;
 import no.henrik.insurance.example.domain.InsuranceResponse;
-import no.henrik.insurance.example.domain.POLICY_STATUS;
+import no.henrik.insurance.example.domain.PolicyStatus;
 import no.henrik.insurance.example.exception.CustomerCreationException;
 import no.henrik.insurance.example.exceptionhandler.PolicyExceptionHandler;
 import no.henrik.insurance.example.service.InsuranceService;
@@ -60,7 +60,7 @@ public class InsuranceControllerUnitTest {
                 .then()
                 .body("customerNumber", is("1"))
                 .body("policyNumber", is("A-1"))
-                .body("status", is(POLICY_STATUS.DONE.toString()))
+                .body("status", is(PolicyStatus.DONE.toString()))
                 .statusCode(201);
     }
 
@@ -76,7 +76,7 @@ public class InsuranceControllerUnitTest {
                 .then()
                 .body("customerNumber", nullValue())
                 .body("policyNumber", nullValue())
-                .body("status", is(POLICY_STATUS.INITIAL_CREATE.toString()))
+                .body("status", is(PolicyStatus.INITIAL_CREATE.toString()))
                 .statusCode(500);
     }
 
@@ -109,7 +109,7 @@ public class InsuranceControllerUnitTest {
     }
 
     private InsuranceResponse createDefaultInsuranceResponse() {
-        return new InsuranceResponse("1", "A-1", POLICY_STATUS.DONE.toString(), new HashMap<String, String>());
+        return new InsuranceResponse("1", "A-1", PolicyStatus.DONE.toString(), new HashMap<String, String>());
     }
 
 }

@@ -2,7 +2,7 @@ package no.henrik.insurance.example.service;
 
 import no.henrik.insurance.example.domain.InsuranceRequest;
 import no.henrik.insurance.example.domain.InsuranceResponse;
-import no.henrik.insurance.example.domain.POLICY_STATUS;
+import no.henrik.insurance.example.domain.PolicyStatus;
 import no.henrik.insurance.example.exception.PolicyCreatedException;
 import no.henrik.insurance.example.exception.SendLetterException;
 import no.henrik.insurance.example.external.Brevtjeneste;
@@ -40,14 +40,14 @@ public class InsuranceServiceTest {
         InsuranceRequest request = createInsuranceRequest("Henrik", "Hahne", "12345678910", true, "Livsforsikring", "henrik@zuperzoft.com");
         when(fagSystem.createCustomer("Henrik", "Hahne", "12345678910", true)).thenReturn("1");
         when(fagSystem.createPolicy("1", "Livsforsikring")).thenReturn("A-1");
-        when(brevtjeneste.sendEmailToCustomer("henrik@zuperzoft.com", "A-1", "Default policy Text")).thenReturn(POLICY_STATUS.LETTER_SENT.toString());
-        when(fagSystem.updatePolicyStatus("A-1", POLICY_STATUS.LETTER_SENT.toString())).thenReturn("OK");
+        when(brevtjeneste.sendEmailToCustomer("henrik@zuperzoft.com", "A-1", "Default policy Text")).thenReturn(PolicyStatus.LETTER_SENT.toString());
+        when(fagSystem.updatePolicyStatus("A-1", PolicyStatus.LETTER_SENT.toString())).thenReturn("OK");
         InsuranceResponse response = service.createPolicy(request);
 
         assertNotNull(response);
         assertEquals("1", response.getCustomerNumber());
         assertEquals("A-1", response.getPolicyNumber());
-        assertEquals(POLICY_STATUS.DONE.toString(), response.getStatus());
+        assertEquals(PolicyStatus.DONE.toString(), response.getStatus());
     }
 
     @Test()

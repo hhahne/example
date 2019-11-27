@@ -1,6 +1,6 @@
 package no.henrik.insurance.example.domain;
 
-public enum POLICY_STATUS {
+public enum PolicyStatus {
     INITIAL_CREATE,
     CUSTOMER_CREATED,
     ACCOUNT_CREATED,
